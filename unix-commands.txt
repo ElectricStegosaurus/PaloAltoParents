@@ -1,0 +1,171 @@
+===========
+Unix Basics
+===========
+man <topic>	Display the manual page on a topic
+man -k <word>	Do a keyword search of all the man pages.
+which <command>	Print path of a given command
+type <command>	Similar to which; more correct than which
+		  NOTE: if you have "export NOVICE" in your .profile,
+			type is aliased to something else.  You should
+			remove "export NOVICE" and relogin or use
+			"\type" to access this command
+
+
+=================
+Filesystem Basics
+=================
+pwd		Print working directory
+cd <dir>	Change working directory
+ls [-lA]	List files in working directory
+		  -l means print in wide format (shows permissions etc.)
+		  -A means print hidden files (those that start with .)
+mv <src> <dst>	Move and/or Rename file (you must specify both)
+cp <src> <dst>	Copy file from src to dst (you must specify both)
+rm <file>	Remove (delete) a file
+		  Recursive:
+		  rm and cp support a -R option to remove or copy all
+		  files within a directory, if the target is a directory
+touch <file>	  Create an empty file or change modification time
+ln -s <src> [<dst>]
+		Make a symbolic link to <src> named <dst>
+
+Directory Basics
+----------------
+mkdir <file>	Make a directory
+rmdir <file>	Remove a directory (must be non-empty)
+
+Special Directories
+-------------------
+~		Your home directory
+~<userid>	That user's home directory e.g. ~djv = David's home directory
+.  (period)	The current working directory (useful for commands like cp)
+.. (2xperiod)	One level up the directory hierarchy from the working directory
+		  e.g. if the working directory is "/p/ui/",
+		       then ".." represents "/p/".
+
+Permissions
+-----------
+chmod [-R] <mode> <files>
+		Change permissions on <files> to <mode>.  -R means
+		  recursive (see above, at rm)
+chgrp [-R] <group> <files>
+		Change groups on <files> to <group>.  -R means recursive.
+
+File Recovery
+-------------
+cd .snapshot	Go to directory of backup directories ("snapshots")
+		  (a cunix peculiarity)
+
+
+============
+Shell Basics
+============
+
+Environment
+-----------
+export		List all environment settings
+echo $DISPLAY	Display the value of environment variable DISPLAY
+export DISPLAY=muddsun72.cc.columbia.edu:0.0
+		Export your display environment variable to muddsun72
+xhost +		Allow an exported display to appear on your computer
+alias		View or change shell aliases
+		  (e.g. type "alias rm='rm -i'" to always prompt before rm)
+
+Command-Line Fun
+----------------
+<Tab>		Expand this filename if possible
+
+|		Pipe output from one command to another
+>		Redirect Standard Output to file
+			e.g. cat foo > foo_bar
+<		Redirect Standard Input from file
+>&		Redirect Standard Output and Standard Error
+
+
+===========
+User Basics
+===========
+groups <user>	Show what groups <user> is in
+group		Command for creating/viewing groups
+		  (a cunix peculiarity)
+pages -v <user>	Show a user's print quota and history
+me <user>	Show account information about a user
+
+
+==============
+Process Basics
+==============
+ps -u <user>	List processes (running programs) owned by user
+sps		Like ps; a little prettier
+top		List top processes running on a machine (heaviest load)
+jobs		List jobs (jobs are like processes)
+fg		Put active job in the foreground (blocks command-line)
+bg		Put active job in the background (runs at same time as shell)
+kill -9 <pid>	Kill a process.  <pid> is the process id as found with ps.
+		  [There are a variety of other signals you can send...  Try
+		   'man -s 5 signal' for more.]
+control-C	Try to kill a process (works sometimes, not others).
+control-Z	Stop (suspend) a process.  Use fg or bg to bring it back.
+
+
+
+
+
+
+
+
+
+
+
+
+
+=============
+Editor Basics
+=============
+pico -z		Runs the pico text editor (with suspend enabled)
+emacs		Runs everyone's favorite text editor
+stty <function> <character>
+		Remap a function to a character...
+		  e.g. 'stty erase ^H' might make the delete key work...
+pine -z		Runs pine (everyone's favorite mail program)
+		  (with suspend enabled)
+cat		Dump a (text) file to the standard output (i.e. screen)
+		  Useful with redirection to concatenate files.
+		  e.g. 'cat foo1.ps foo2.ps > fooall.ps' -- it really works :)
+more		Everyone's favorite program for displaying text files...
+		  can view page-by-page, search, etc.
+		  (Try these commands: <space>, b, /<search_string>)
+less		A fancier text viewing program
+vi		The text editor that puts the 'vi' in 'evil'.
+
+==============
+Network Basics
+==============
+telnet <host>	Use to log into another computer to use it
+rlogin <host>	Remote login to <host>
+ftp <host>	Use to log into another computer to transfer files
+ssh <host>	'Secure Shell' -- encrypted login, the only safe way to
+		  use the internet (I think)
+ping <host>	See if a computer is alive or down.
+nslookup <host>	Look up a host or ip address
+rsh <host> <command>
+		Run <command> on <host>
+onall <command>	Run <command> on all cunix hosts
+rup		Check loads on all cunix hosts
+
+==========
+Unix Tools
+==========
+grep <string> <file>
+		Search for string in file; print all lines where there's
+		  a match
+diff <file1> <file2>
+		Compare two files and print out the differences, line-by-line
+gcc <file>	Compile c/c++ source code file <file>
+javac <file>	Compile java source code file <file>
+gzip <file>	Compress <file> ('gunzip <file>' decompresses)		
+tar cvf <dst> <src1> <src2> ...
+		Concatenate files <src1> and <src2> ... into file <dst>
+		  (To separate, use 'tar xvf <src>')
+gv <file>	Open postscript file for viewing
+acroread <file>	Open pdf file in Adobe Acrobat Reader
